@@ -23,6 +23,7 @@ const products = require('./routes/api/products')
 
 //USE ROUTES
 app.use('/processors', products)
+app.use('/processors/:id', products)
 
 //TO DEPLOY
 const port = process.env.PORT || 5000

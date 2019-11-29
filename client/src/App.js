@@ -29,6 +29,7 @@ import Products from './components/NavComponents/Products'
 import About from './components/NavComponents/About'
 import Cart from './components/NavComponents/Cart'
 import Contact from './components/NavComponents/Contact'
+import ViewSpecs from './components/NavComponents/Categories/ViewSpecs/ViewSpecs'
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route path='/about' component={About} />
             <Route path='/cart' component={Cart} />
             <Route path='/contact' component={Contact} />
+            <Route path='/processor/:id' component={ViewSpecs} />
           </Switch>
       </div>
     </BrowserRouter>

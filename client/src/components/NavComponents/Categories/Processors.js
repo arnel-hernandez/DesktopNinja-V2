@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Spinner } from 'reactstrap';
-
+    CardTitle, CardSubtitle, Spinner, Button } from 'reactstrap';
+import { Link } from 'react-router-dom'
 //CONNECT REDUX TO COMPONENT
 import { connect } from 'react-redux'
 
@@ -17,7 +17,7 @@ export class Processors extends Component {
 
     render() {
         const { products } = this.props
-        console.log(this.props)
+        console.log(this.props.match.path)
         const productList = products.length ? (products.map(product => {
             return (
                 <Container key={product._id}>
@@ -47,10 +47,13 @@ export class Processors extends Component {
                         <li>Memory Type: {product.memory_type}</li>
                     </div>
 
+                    <Link to={'/processor/'+ product._id}>
                     <Button
                     color='dark'
                     style={{marginBottom: '1rem'}}
-                    >View Full Specification</Button>
+                    >View Full Specification
+                    </Button>
+                    </Link>
 
                     </Col>
 
@@ -70,6 +73,7 @@ export class Processors extends Component {
         return(
             <div>
                 <h1>Processors</h1>
+                <br></br>
                 {productList}
             </div>
         )
