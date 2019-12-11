@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Spinner } from 'reactstrap';
+    CardTitle, CardSubtitle, Spinner } from 'reactstrap';
 
 import TopCarousel from './TopCarousel'
 
@@ -48,11 +48,6 @@ export class Home extends Component {
                         <li>Cache: {product.cache}</li>
                         <li>Memory Type: {product.memory_type}</li>
                     </div>
-
-                    <Button
-                    color='dark'
-                    style={{marginBottom: '1rem'}}
-                    >View Full Specification</Button>
 
                     </Col>
 

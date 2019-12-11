@@ -20,10 +20,12 @@ mongoose.connect(db,{useNewUrlParser: true, useCreateIndex: true})
 
 //API'S
 const products = require('./routes/api/products')
+const cartItems = require('./routes/api/cart')
 
 //USE ROUTES
 app.use('/processors', products)
 app.use('/processors/:id', products)
+app.use('/cart', cartItems)
 
 //TO DEPLOY
 const port = process.env.PORT || 5000

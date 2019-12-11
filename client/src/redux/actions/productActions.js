@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_PRODUCT,PRODUCT_LOADING, GET_SPECS } from './typesOfAction'
+import { GET_PRODUCT,PRODUCT_LOADING, GET_SPECS, GET_CART, POST_CART } from './typesOfAction'
 
 export const getItems = () => dispatch => {
     dispatch(productLoading())
@@ -16,6 +16,27 @@ export const getItemsId = (id) => dispatch => {
     .then(res => dispatch({
         type: GET_SPECS,
         payload: res.data
+    }))
+}
+
+export const getCart = () => dispatch => {
+    dispatch(productLoading())
+    axios.get('http://localhost:5000/cart')
+    .then(res => dispatch({
+        type: GET_CART,
+        payload: res.data
+    }))
+}
+
+export const postToCart = (brand, name, price) => dispatch => {
+    axios.post('http://localhost:5000/cart', {brand, name, price})
+    .then(() => dispatch({
+        type: POST_CART,
+        payload: {
+            brand: brand,
+            name: name,
+            price: price
+        }
     }))
 }
 

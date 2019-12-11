@@ -51,10 +51,6 @@ export class TopNavbar extends Component {
               </UncontrolledDropdown>
 
               <NavItem>
-                <NavLink href="/products">Products</NavLink>
-              </NavItem>
-
-              <NavItem>
                 <NavLink href="/about">About Us</NavLink>
               </NavItem>
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 //CONNECT REDUX TO COMPONENT
 import { connect } from 'react-redux'
 
-import { getItems } from '../../../redux/actions/productActions'
+import { getItems, postToCart } from '../../../redux/actions/productActions'
 
 import PropTypes from 'prop-types'
 
@@ -15,9 +15,26 @@ export class Processors extends Component {
         this.props.getItems()
     }
 
+    addToCart = (id) => {
+        if(this.props.products.length){
+            const processors = this.props.products.filter(product => product._id === id)
+            console.log(id)
+            console.log(processors)
+                if(processors.length){
+                    const processor = processors.map(proc => {
+                        const {brand, name, price} = proc
+                        
+                        this.props.postToCart(brand,name,price)
+                        return null
+                    })
+                    console.log(processor)
+                }
+            }
+        }
+
     render() {
         const { products } = this.props
-        console.log(this.props.match.path)
+        console.log(this.props)
         const productList = products.length ? (products.map(product => {
             return (
                 <Container key={product._id}>
@@ -59,7 +76,13 @@ export class Processors extends Component {
 
                     <Col>
                     <h1>${product.price}</h1>
-
+                    
+                    <Button
+                    color='dark'
+                    onClick={() => this.addToCart(product._id)}>
+                        Buy
+                    </Button>
+                    
                     </Col>
                 </Row>
                 </Container>
@@ -90,4 +113,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getItems })(Processors)
+export default connect(mapStateToProps, { getItems, postToCart })(Processors)

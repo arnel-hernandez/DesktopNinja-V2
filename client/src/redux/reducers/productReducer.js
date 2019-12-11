@@ -1,9 +1,10 @@
 
-import { GET_PRODUCT, PRODUCT_LOADING, GET_SPECS } from '../actions/typesOfAction'
+import { GET_PRODUCT, PRODUCT_LOADING, GET_SPECS, GET_CART, POST_CART } from '../actions/typesOfAction'
 
 const initialState = {
     products: [],
     viewSpecs:[],
+    cartItems: [],
     loading: false
 }
 
@@ -18,6 +19,16 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 viewSpecs: action.payload,
+            }
+        case GET_CART:
+            return {
+                ...state,
+                cartItems: action.payload,
+            }
+        case POST_CART:
+            return {
+                ...state,
+                cartItems: action.payload,
             }
         case PRODUCT_LOADING:
             return {

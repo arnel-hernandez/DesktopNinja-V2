@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-
+import { Spinner, Button } from 'reactstrap'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { getItemsId } from '../../../../redux/actions/productActions'
 
@@ -14,10 +15,17 @@ export class ViewSpecs extends Component {
 
     render() {
         const { viewSpecs } = this.props
-        console.log(viewSpecs)
+
         const viewSpecification = viewSpecs.length ? (viewSpecs.map(viewspec => {
             return(
-                <div>
+
+                <div key={viewspec._id}>
+                    <div>
+                        <Link to='/processors'>
+                        <Button
+                        color='dark'>Back</Button>
+                        </Link>
+                    </div>
                     <h1>{viewspec.brand} {viewspec.name}</h1>
                         <li>Cores: {viewspec.cores}</li>
                         <li>Threads: {viewspec.threads}</li>
@@ -27,7 +35,11 @@ export class ViewSpecs extends Component {
                         <li>Memory Type: {viewspec.memory_type}</li>
                 </div>
             )
-        })) : null
+        })) : (
+            <div>
+                <Spinner color="primary" />
+            </div>
+        )
 
         return (
             <div>
@@ -38,7 +50,7 @@ export class ViewSpecs extends Component {
 }
 
 ViewSpecs.propTypes = {
-    getItems: PropTypes.func.isRequired,
+    getItemsId: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {
